@@ -1,5 +1,5 @@
-import {TagIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
+import { TagIcon } from '@sanity/icons'
+import { defineField, defineType } from 'sanity'
 
 export const categoryType = defineType({
   name: 'category',
@@ -9,18 +9,24 @@ export const categoryType = defineType({
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'string'
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       options: {
-        source: 'title',
-      },
+        source: 'title'
+      }
     }),
     defineField({
       name: 'description',
-      type: 'text',
-    }),
+      type: 'text'
+    })
   ],
+  preview: {
+    select: {
+      title: 'title',
+      subtitle: 'description'
+    }
+  }
 })
