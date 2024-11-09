@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-export default function ProductCart({
+export default function ProductCard({
   product
 }: {
   product: ALL_PRODUCTS_BY_COLLECTION_SLUGResult[0]
@@ -16,7 +16,7 @@ export default function ProductCart({
       className="relative flex data-[exhaustive]:opacity-60 data-[exhaustive]:grayscale flex-col group overflow-hidden p-8"
     >
       <Link
-        href={`/product/${product.slug?.current}`}
+        href={`/products/${product.slug?.current}`}
         className="absolute inset-0 z-[1]"
       />
       <div className="overflow-hidden relative aspect-[6/5]">
