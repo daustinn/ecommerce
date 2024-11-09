@@ -1,17 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import Search from './search'
-import Cart from './cart'
-import User from './user'
-import PopularCategories from './categories'
+import { getPopularCategories } from '@/sanity/lib/categories/getPopularCategories'
+import RightHeader from './right'
+import LeftHeader from './left'
 
-function Header() {
+async function Header() {
+  const categories = await getPopularCategories()
   return (
     <header className="flex items-center justify-between h-[90px] px-10">
-      <nav className="flex flex-grow basis-0 text-sm">
-        <PopularCategories />
-      </nav>
+      <LeftHeader categories={categories} />
       <nav>
         <Link href="/">
           <Image
@@ -23,11 +21,7 @@ function Header() {
           />
         </Link>
       </nav>
-      <nav className="flex flex-grow items-center gap-8 basis-0 justify-end">
-        <Cart />
-        <Search />
-        <User />
-      </nav>
+      <RightHeader />
     </header>
   )
 }
