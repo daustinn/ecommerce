@@ -7,6 +7,7 @@ import Header from '@/components/header'
 import { dark } from '@clerk/themes'
 import { esMX } from '@clerk/localizations'
 import Footer from '@/components/footer'
+import { SanityLive } from '@/sanity/lib/live'
 
 const geistSans = localFont({
   src: '../fonts/GeistVF.woff',
@@ -49,6 +50,7 @@ export default function RootLayout({
           <Header />
           <main className="flex flex-grow">{children}</main>
           <Footer />
+          <SanityLive />
         </body>
       </html>
     </ClerkProvider>
