@@ -13,7 +13,7 @@ export default function ProductsHero({ products }: Props) {
       {/* <div>
         <pre>{JSON.stringify(categories, null, 2)}</pre>
       </div> */}
-      <div className="grid gap-4 grid-cols-5">
+      <div className="grid gap-4 grid-cols-3">
         {products.map((product) => (
           <ProductThumb product={product} key={product._id} />
         ))}
