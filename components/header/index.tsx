@@ -7,7 +7,7 @@ import User from './user'
 
 function Header() {
   return (
-    <header className="flex items-center justify-between p-7 px-10">
+    <header className="flex items-center justify-between h-[90px] px-10">
       <nav className="flex flex-grow basis-0 text-sm">
         <ul className="flex [&>li>a]:px-4 hover:[&>li>a]:underline text-stone-300">
           <li>
@@ -25,8 +25,8 @@ function Header() {
         <Link href="/">
           <Image
             title="Ir a la página principal"
-            height={50}
-            width={50}
+            height={70}
+            width={70}
             src="/logo.webp"
             alt="Logo 366 Clothing"
           />
