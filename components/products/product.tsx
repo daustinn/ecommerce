@@ -9,13 +9,22 @@ export default function ProductCart({
 }: {
   product: ALL_PRODUCTS_BY_COLLECTION_SLUGResult[0]
 }) {
+  const exhaustive = product.stock === 0
   return (
-    <div className="relative flex flex-col group overflow-hidden p-8">
-      <a
+    <div
+      data-exhaustive={exhaustive ? 'true' : undefined}
+      className="relative flex data-[exhaustive]:opacity-60 data-[exhaustive]:grayscale flex-col group overflow-hidden p-8"
+    >
+      <Link
         href={`/product/${product.slug?.current}`}
         className="absolute inset-0 z-[1]"
       />
-      <div className="overflow-hidden aspect-[6/5]">
+      <div className="overflow-hidden relative aspect-[6/5]">
+        {exhaustive && (
+          <div className="w-full absolute bg-stone-500/80 grid place-content-center text-white text-xl h-full inset-0">
+            <p>Agotado</p>
+          </div>
+        )}
         <Image
           width={300}
           height={300}
@@ -28,15 +37,6 @@ export default function ProductCart({
         <h2 className="text-ellipsis flex-grow line-clamp-1 text-lg font-medium">
           {product.name}
         </h2>
-        {/* {product.description?.length && (
-          <p className="text-xs text-stone-400 line-clamp-2 ">
-            {product.description?.map((block) =>
-              block._type === 'block'
-                ? block.children?.map((child) => child.text).join('')
-                : ''
-            )}
-          </p>
-        )} */}
         <Link
           href={`/categories/${product.categories?.[0].slug?.current}`}
           className="text-xs z-[1] relative text-blue-500 hover:underline"
