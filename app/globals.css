@@ -92,3 +92,24 @@ input[type='search'] {
     @apply bg-background text-foreground;
   }
 }
+
+@font-face {
+  font-family: 'Larken';
+  src: url('/fonts/larken/Larken-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Larken';
+  src: url('/fonts/larken/Larken-medium.otf') format('opentype');
+  font-weight: medium;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Hellix';
+  src: url('/fonts/hellix/Hellix-medium.otf') format('opentype');
+  font-weight: medium;
+  font-style: normal;
+}

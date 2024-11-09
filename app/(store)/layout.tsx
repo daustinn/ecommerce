@@ -6,6 +6,7 @@ import { ClerkProvider } from '@clerk/nextjs'
 import Header from '@/components/header'
 import { dark } from '@clerk/themes'
 import { esMX } from '@clerk/localizations'
+import Footer from '@/components/footer'
 
 const geistSans = localFont({
   src: '../fonts/GeistVF.woff',
@@ -43,10 +44,11 @@ export default function RootLayout({
     >
       <html lang="es">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-black text-white`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased font-hellix bg-black min-h-svh text-white flex flex-col`}
         >
           <Header />
-          <main>{children}</main>
+          <main className="flex flex-grow">{children}</main>
+          <Footer />
         </body>
       </html>
     </ClerkProvider>
