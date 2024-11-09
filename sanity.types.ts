@@ -593,7 +593,7 @@ export type ALL_PRODUCTS_QUERYResult = Array<{
 
 // Source: ./sanity/lib/products/getAllProductsByColletion.ts
 // Variable: ALL_PRODUCTS_BY_COLLECTION_SLUG
-// Query: *[_type == "product" && references(*[_type == "collection" && slug.current == $collectionSlug]._id)]{      _id,      name,      slug,      images,      price,      description,      categories[]->{        slug,        title,      }    } | order(name asc)
+// Query: *[_type == "product" && references(*[_type == "collection" && slug.current == $collectionSlug]._id)]{      _id,      name,      slug,      images,      price,      stock,      description,      categories[]->{        slug,        title,      }    } | order(name asc)
 export type ALL_PRODUCTS_BY_COLLECTION_SLUGResult = Array<{
   _id: string
   name: string | null
@@ -611,6 +611,7 @@ export type ALL_PRODUCTS_BY_COLLECTION_SLUGResult = Array<{
     _key: string
   }> | null
   price: number | null
+  stock: number | null
   description: Array<
     | {
         children?: Array<{
@@ -732,7 +733,7 @@ declare module '@sanity/client' {
     '\n            *[_type == "collection"] | order(_createdAt desc)\n        ': ALL_COLLECTIONS_QUERYResult
     '\n              *[_type == "collection"] | order(_editedAt asc)[0..3]\n          ': FOUR_COLLECTIONS_QUERYResult
     '\n            *[_type == "product"] | order(name asc)\n        ': ALL_PRODUCTS_QUERYResult
-    '\n    *[_type == "product" && references(*[_type == "collection" && slug.current == $collectionSlug]._id)]{\n      _id,\n      name,\n      slug,\n      images,\n      price,\n      description,\n      categories[]->{\n        slug,\n        title,\n      }\n    } | order(name asc)': ALL_PRODUCTS_BY_COLLECTION_SLUGResult
+    '\n    *[_type == "product" && references(*[_type == "collection" && slug.current == $collectionSlug]._id)]{\n      _id,\n      name,\n      slug,\n      images,\n      price,\n      stock,\n      description,\n      categories[]->{\n        slug,\n        title,\n      }\n    } | order(name asc)': ALL_PRODUCTS_BY_COLLECTION_SLUGResult
     '\n              *[_type == "product"] | order(_createdAt desc)[0..9]\n          ': TEN_PRODUCTS_QUERYResult
   }
 }

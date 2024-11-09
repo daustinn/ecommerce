@@ -23,6 +23,7 @@ export const getAllProductsByCollectionSlug = async (
       slug,
       images,
       price,
+      stock,
       description,
       categories[]->{
         slug,
