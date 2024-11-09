@@ -1,5 +1,5 @@
 import { TiersIcon } from '@sanity/icons'
-import { defineArrayMember, defineField, defineType } from 'sanity'
+import { defineField, defineType } from 'sanity'
 
 export const collectionType = defineType({
   name: 'collection',
@@ -23,11 +23,18 @@ export const collectionType = defineType({
       validation: (Rule) => Rule.required()
     }),
     defineField({
+      name: 'backgroundColour',
+      title: 'Background Colour',
+      type: 'simplerColor',
+      options: {
+        disableAlpha: true
+      }
+    }),
+    defineField({
       name: 'description',
       title: 'Description',
       type: 'blockContent'
     }),
-
     defineField({
       name: 'coverPhoto',
       title: 'Cover Photo',
@@ -35,17 +42,6 @@ export const collectionType = defineType({
       options: {
         hotspot: true
       }
-    }),
-    defineField({
-      name: 'products',
-      title: 'Products',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'reference',
-          to: [{ type: 'product' }]
-        })
-      ]
     })
   ],
   preview: {
