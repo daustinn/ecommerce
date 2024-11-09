@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import ProductCart from '@/components/products/product'
+import ProductCard from '@/components/products/product-card'
 import { ALL_PRODUCTS_BY_COLLECTION_SLUGResult } from '@/sanity.types'
 import { getAllProductsByCollectionSlug } from '@/sanity/lib/products/getAllProductsByColletion'
 import React, { Suspense } from 'react'
@@ -25,7 +25,7 @@ export default async function CollectionsPageSlug({
     <Suspense key={`${slug}-${sort}`}>
       <div className="grid grid-cols-2 lg:grid-cols-3 divide-x divide-stone-700 divide-dotted divide-y max-w-4xl mx-auto">
         {products.map((product) => (
-          <ProductCart product={product} key={product._id} />
+          <ProductCard product={product} key={product._id} />
         ))}
       </div>
     </Suspense>
