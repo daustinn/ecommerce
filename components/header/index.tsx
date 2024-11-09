@@ -4,22 +4,13 @@ import Link from 'next/link'
 import Search from './search'
 import Cart from './cart'
 import User from './user'
+import PopularCategories from './categories'
 
 function Header() {
   return (
     <header className="flex items-center justify-between h-[90px] px-10">
       <nav className="flex flex-grow basis-0 text-sm">
-        <ul className="flex [&>li>a]:px-4 hover:[&>li>a]:underline text-stone-300">
-          <li>
-            <Link href="/products">T-shirt</Link>
-          </li>
-          <li>
-            <Link href="/products">Pants</Link>
-          </li>
-          <li>
-            <Link href="/products">Shoes</Link>
-          </li>
-        </ul>
+        <PopularCategories />
       </nav>
       <nav>
         <Link href="/">

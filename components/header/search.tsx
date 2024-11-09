@@ -22,7 +22,10 @@ export default function Search() {
         className="top-0 w-full text-white p-5 hidden bg-black open:flex justify-center"
       >
         <div className="w-full h-full relative px-5">
-          <Form action="/search" className="w-full flex gap-2 max-w-xl mx-auto">
+          <Form
+            action="/products"
+            className="w-full flex gap-2 max-w-xl mx-auto"
+          >
             <label className="block relative w-full">
               <div className="absolute pointer-events-none inset-y-0 px-4 text-white/30 flex items-center">
                 <IoIosSearch size={25} />
