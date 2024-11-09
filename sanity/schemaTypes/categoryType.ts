@@ -19,6 +19,12 @@ export const categoryType = defineType({
       }
     }),
     defineField({
+      name: 'visible',
+      type: 'boolean',
+      title: 'Visible',
+      description: 'Show this category in the store'
+    }),
+    defineField({
       name: 'description',
       type: 'text'
     })
