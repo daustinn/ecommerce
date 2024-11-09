@@ -1,4 +1,4 @@
-import { ALL_PRODUCTS_BY_COLLECTION_SLUGResult } from '@/sanity.types'
+import { GET_PRODUCTS_QUERYResult } from '@/sanity.types'
 import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import React from 'react'
 export default function ProductCard({
   product
 }: {
-  product: ALL_PRODUCTS_BY_COLLECTION_SLUGResult[0]
+  product: GET_PRODUCTS_QUERYResult[0]
 }) {
   const exhaustive = product.stock === 0
   return (
