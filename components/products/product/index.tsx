@@ -1,5 +1,7 @@
 import { GET_PRODUCT_QUERYResult } from '@/sanity.types'
 import React from 'react'
+import GalleryProduct from './gallery'
+import { PortableText } from 'next-sanity'
 
 export default function ProductSlug({
   product
@@ -7,30 +9,23 @@ export default function ProductSlug({
   product: GET_PRODUCT_QUERYResult
 }) {
   if (!product) return null
-
-  const exhaustive = product.stock === 0
   return (
-    <div
-      data-exhaustive={exhaustive ? 'true' : undefined}
-      className="relative flex data-[exhaustive]:opacity-60 data-[exhaustive]:grayscale flex-col group overflow-hidden p-8"
-    >
-      <div className="overflow-ellipsis flex-grow pt-2 gap-2 flex flex-col">
-        <h2 className="text-ellipsis flex-grow line-clamp-1 text-lg font-medium">
-          {product.name}
-        </h2>
-        {/* <Link
-          href={`/categories/${product.categories.[0].slug.current}`}
-          className="text-xs z-[1] relative text-blue-500 hover:underline"
-        >
-          {product.categories.[0].title}
-        </Link>
-        <p className="font-light text-lg">
-          {product.price.toLocaleString('en-EU', {
+    <div className="relative group flex group p-8">
+      <GalleryProduct product={product} />
+      <div className="px-10">
+        <h1 className="text-3xl">{product.name}</h1>
+        <p className="py-4 text-3xl font-light">
+          {product.price?.toLocaleString('es-AR', {
             style: 'currency',
-            currency: 'USD',
+            currency: 'ARS',
             currencyDisplay: 'symbol'
           })}
-        </p> */}
+        </p>
+        <div className="prose">
+          {Array.isArray(product.description) && (
+            <PortableText value={product.description} />
+          )}
+        </div>
       </div>
     </div>
   )
