@@ -8,6 +8,7 @@ import { dark } from '@clerk/themes'
 import { esMX } from '@clerk/localizations'
 import Footer from '@/components/footer'
 import { SanityLive } from '@/sanity/lib/live'
+import ThemeProvider from '@/providers/theme'
 
 const geistSans = localFont({
   src: '../fonts/GeistVF.woff',
@@ -43,14 +44,17 @@ export default function RootLayout({
       }}
       localization={esMX}
     >
-      <html lang="es">
+      <html lang="es" suppressHydrationWarning>
         <body
+          suppressHydrationWarning
           className={`${geistSans.variable} ${geistMono.variable} antialiased font-hellix bg-black min-h-svh text-white flex flex-col`}
         >
-          <Header />
-          <main className="flex flex-grow">{children}</main>
-          <Footer />
-          <SanityLive />
+          <ThemeProvider>
+            <Header />
+            <main className="flex flex-grow">{children}</main>
+            <Footer />
+            <SanityLive />
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
