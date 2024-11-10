@@ -21,6 +21,11 @@ export default function ProductSlug({
             currencyDisplay: 'symbol'
           })}
         </p>
+        <div>
+          <button className="py-3 px-5 bg-white rounded-full text-black">
+            Agregar al carrito
+          </button>
+        </div>
         <div className="prose">
           {Array.isArray(product.description) && (
             <PortableText value={product.description} />

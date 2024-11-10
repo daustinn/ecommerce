@@ -18,15 +18,15 @@ export default function GalleryProduct({
   const [current, setCurrent] = useState(0)
 
   const altSeo =
-    product.name +
-    ' ' +
-    product.description
-      ?.map((desc) =>
-        desc._type === 'block'
-          ? desc.children?.map((child) => child.text).join(' ')
-          : ' '
-      )
-      .join(' ')
+    product.name + ' ' + product.description?.length
+      ? product.description
+          ?.map((desc) =>
+            desc._type === 'block'
+              ? desc.children?.map((child) => child.text).join(' ')
+              : ' '
+          )
+          .join(' ')
+      : ' '
 
   return (
     <div className="flex gap-14">
@@ -42,16 +42,16 @@ export default function GalleryProduct({
               width={100}
               height={100}
               src={image}
-              alt={altSeo}
+              alt={altSeo ?? product.name ?? ' '}
               className="w-full h-full object-cover"
             />
           </button>
         ))}
       </div>
       <div>
-        <div className="w-[600px] max-w-[700px]">
+        <picture className="w-[600px] max-w-[700px]">
           <img src={images[current]} className="h-auto" alt={altSeo} />
-        </div>
+        </picture>
       </div>
     </div>
   )
