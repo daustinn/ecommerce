@@ -13,7 +13,7 @@ export default async function ProductSlugPage({
   const { slug } = await params
   const product = await getProduct(slug)
   return (
-    <div>
+    <div className="max-w-7xl mx-auto w-full">
       <ProductSlug product={product as any} />
     </div>
   )
