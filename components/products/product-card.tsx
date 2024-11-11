@@ -44,9 +44,9 @@ export default function ProductCard({
           {product.categories?.[0].title}
         </Link>
         <p className="font-light text-lg">
-          {product.price?.toLocaleString('en-EU', {
+          {product.price?.toLocaleString('es-PE', {
             style: 'currency',
-            currency: 'USD',
+            currency: 'PEN',
             currencyDisplay: 'symbol'
           })}
         </p>
