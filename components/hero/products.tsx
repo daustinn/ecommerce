@@ -30,14 +30,6 @@ export default function HeroTenProducts({ products }: { products: Product[] }) {
               <ProductCard product={product} key={product._id} />
             ))}
           </div>
-          {/* <div className="flex justify-center pt-6">
-          <Link
-            href="/collections"
-            className="bg-stone-100 hover:bg-stone-50 p-2 rounded-full px-4 block text-stone-900"
-          >
-            Ver todas los productos
-          </Link>
-        </div> */}
         </div>
       </section>
     </div>
@@ -78,14 +70,6 @@ export const ProductCard = ({ product }: { product: Product }) => {
           currencyDisplay: 'symbol'
         })}
       </h2>
-      {/* <div className="p-4">
-        <h1 className="font-larken text-4xl">{product.name}</h1>
-      </div> */}
-      {/* <img
-          src={product.mainImage?.asset.url}
-          className="group-hover:scale-105 w-full transition-transform object-bottom"
-          alt={product.title}
-        /> */}
     </Link>
   )
 }
