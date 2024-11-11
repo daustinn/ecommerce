@@ -16,6 +16,10 @@ const MovingSticker = ({
   transitionSpeed = 0.1,
   tiltIntensity = 10 // valor de inclinación predeterminado
 }: MovingStickerProps) => {
+  if (typeof window === 'undefined') {
+    return null
+  }
+
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
 
