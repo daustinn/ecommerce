@@ -29,9 +29,9 @@ export default function ProductSlug({
           ))}
         </div>
         <p className="py-4 text-3xl font-light">
-          {product.price?.toLocaleString('en-EU', {
+          {product.price?.toLocaleString('es-PE', {
             style: 'currency',
-            currency: 'USD',
+            currency: 'PEN',
             currencyDisplay: 'symbol'
           })}
         </p>
