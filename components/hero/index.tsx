@@ -59,7 +59,7 @@ export default function Hero({ collections }: { collections: Collection[] }) {
   return (
     <section className="flex flex-col px-4 flex-grow pt-5">
       <AnimatedText
-        className="text-center font-larken max-w-[15ch] mt-24 mx-auto text-[80px] leading-[55px] tracking-tighter"
+        className="text-center font-larken max-w-[15ch] mt-24 mx-auto text-[80px] leading-[60px] tracking-tighter"
         once
         el="h1"
         text="Explora el mundo de la moda"
