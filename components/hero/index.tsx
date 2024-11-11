@@ -16,7 +16,7 @@ const CollectionCard = ({ collection }: { collection: Collection }) => {
       }}
       className="rounded-[10px] relative aspect-square group overflow-hidden"
     >
-      <a
+      <Link
         href={'/products?collection=' + collection.slug?.current}
         key={collection._id}
         title={'Ir a la coleccion' + collection.title}
@@ -50,7 +50,7 @@ const CollectionCard = ({ collection }: { collection: Collection }) => {
           className="w-full h-full object-cover"
           alt={collection.title + ' cover photo'}
         />
-      </a>
+      </Link>
     </TiltCard>
   )
 }
