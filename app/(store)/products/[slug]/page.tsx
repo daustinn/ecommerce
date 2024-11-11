@@ -10,9 +10,9 @@ export const revalidate = 60
 export default async function ProductSlugPage({
   params
 }: {
-  params: {
+  params: Promise<{
     slug: string
-  }
+  }>
 }) {
   const { slug } = await params
   const product = (await getProduct(slug)) as GET_PRODUCT_QUERYResult

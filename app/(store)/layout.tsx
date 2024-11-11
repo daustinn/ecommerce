@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
 import '../globals.css'
 
 import { ClerkProvider } from '@clerk/nextjs'
@@ -13,21 +12,24 @@ import DrafModeDisable from '@/components/draft-mode/disable'
 import { draftMode } from 'next/headers'
 import { VisualEditing } from 'next-sanity'
 
-const geistSans = localFont({
-  src: '../fonts/GeistVF.woff',
-  variable: '--font-geist-sans',
-  weight: '100 900'
-})
-const geistMono = localFont({
-  src: '../fonts/GeistMonoVF.woff',
-  variable: '--font-geist-mono',
-  weight: '100 900'
-})
-
 export const metadata: Metadata = {
   title: '366 Clothing | Moda para todos',
   description:
-    '366 Clothing, lugar donde encontrarás las mejores outfits para ti.'
+    '366 Clothing, lugar donde encontrarás las mejores outfits para ti.',
+  keywords: [
+    'moda',
+    'ropa',
+    'outfits',
+    'tendencias',
+    'fashion',
+    'clothing',
+    'trend',
+    'style'
+  ],
+  authors: {
+    name: 'David Bendezú (Daustinn)',
+    url: 'https://daustinn.com'
+  }
 }
 
 export default async function RootLayout({
@@ -49,9 +51,32 @@ export default async function RootLayout({
       localization={esMX}
     >
       <html lang="es" suppressHydrationWarning>
+        <head>
+          <link
+            rel="stylesheet"
+            href="/fonts/hellix/Hellix-Medium.otf"
+            as="font"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="stylesheet"
+            href="/fonts/larken/Larken-Bold.otf"
+            as="font"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+          <link
+            rel="stylesheet"
+            href="/fonts/larken/Larken-Medium.otf"
+            as="font"
+            type="font/woff"
+            crossOrigin="anonymous"
+          />
+        </head>
         <body
           suppressHydrationWarning
-          className={`${geistSans.variable} ${geistMono.variable} antialiased font-hellix bg-black min-h-svh text-white flex flex-col`}
+          className="antialiased font-hellix bg-black min-h-svh text-white flex flex-col"
         >
           <ThemeProvider>
             {(await draftMode()).isEnabled && (
