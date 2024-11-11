@@ -1,4 +1,4 @@
-import { GET_PRODUCT_QUERYResult, Product } from '@/sanity.types'
+import { GET_PRODUCT_QUERYResult } from '@/sanity.types'
 import { urlFor } from '@/sanity/lib/image'
 import { getRelatedProduct } from '@/sanity/lib/products/getRelatedProduct'
 import Link from 'next/link'
@@ -15,7 +15,7 @@ export default async function RelatedProducts({ product }: Props) {
     (category) => category.slug?.current as string
   )
 
-  const allRelatedProducts = (await getRelatedProduct(slugs)) as Product[]
+  const allRelatedProducts = await getRelatedProduct(slugs)
 
   const products = allRelatedProducts.filter(
     (relatedProduct) => relatedProduct._id !== product._id
@@ -35,10 +35,15 @@ export default async function RelatedProducts({ product }: Props) {
               key={product._id}
             >
               <div className="aspect-square overflow-hidden">
-                <img
-                  src={urlFor(product.images!).url()}
-                  alt={product.name ?? ''}
-                />
+                <picture>
+                  <img
+                    src={urlFor(product.images!).url()}
+                    alt={product.name ?? ''}
+                    width={200}
+                    height={200}
+                    className="w-full h-full object-cover"
+                  />
+                </picture>
               </div>
               <p className="line-clamp-2 text-sm pt-2">{product.name}</p>
               <p className="py-2 text-xl font-light">
