@@ -93,6 +93,10 @@ input[type='search'] {
   }
 }
 
+* {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: 'Larken';
   src: url('/fonts/larken/Larken-Bold.otf') format('opentype');
