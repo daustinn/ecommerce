@@ -21,7 +21,7 @@ export default function Footer() {
             <hr className="mx-4 hidden h-4 w-[1px] border-l border-neutral-400 md:inline-block" />
             <p>
               <a
-                href="https://daustinn.com/ecommerce"
+                href="https://github.com/daustinn/ecommerce"
                 className="hover:underline"
                 target="_blank"
                 rel="noopener noreferrer"
