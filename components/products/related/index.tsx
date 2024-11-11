@@ -42,9 +42,9 @@ export default async function RelatedProducts({ product }: Props) {
               </div>
               <p className="line-clamp-2 text-sm pt-2">{product.name}</p>
               <p className="py-2 text-xl font-light">
-                {product.price?.toLocaleString('es-AR', {
+                {product.price?.toLocaleString('es-PE', {
                   style: 'currency',
-                  currency: 'ARS',
+                  currency: 'PEN',
                   currencyDisplay: 'symbol'
                 })}
               </p>
