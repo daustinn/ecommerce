@@ -4,6 +4,9 @@ import { GET_PRODUCT_QUERYResult } from '@/sanity.types'
 import { getProduct } from '@/sanity/lib/products/getProduct'
 import React, { Suspense } from 'react'
 
+export const dynamic = 'force-static'
+export const revalidate = 60
+
 export default async function ProductSlugPage({
   params
 }: {
