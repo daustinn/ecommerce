@@ -534,44 +534,16 @@ export type FOUR_COLLECTIONS_QUERYResult = Array<{
   }
 }>
 
-// Source: ./sanity/lib/sale/getActiveSaleByCouponCode.ts
-// Variable: ACTIVE_SALE_BY_COUPON_QUERY
-// Query: *[            _type == "sale"            && isActive == true            && couponCode == $couponCode        ] | order(validFrom desc) {            _id,            title,            description,            discountAmount,            couponCode,            validFrom,            validUtil,            isActive        }[0]
-export type ACTIVE_SALE_BY_COUPON_QUERYResult = {
-  _id: string
-  title: string | null
-  description: string | null
-  discountAmount: number | null
-  couponCode: string | null
-  validFrom: string | null
-  validUtil: string | null
-  isActive: boolean | null
-} | null
-
 // Source: ./sanity/lib/products/getProduct.ts
 // Variable: GET_PRODUCT_QUERY
-// Query: *[_type == "product" && slug.current == $slug][0]
+// Query: *[_type == "product" && slug.current == $slug][0]{      _id,      name,      slug,      price,      stock,      description,      images,      categories[]->{        _id,        slug,        title      }    }
 export type GET_PRODUCT_QUERYResult = {
   _id: string
-  _type: 'product'
-  _createdAt: string
-  _updatedAt: string
-  _rev: string
-  name?: string
-  slug?: Slug
-  images?: Array<{
-    asset?: {
-      _ref: string
-      _type: 'reference'
-      _weak?: boolean
-      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
-    }
-    hotspot?: SanityImageHotspot
-    crop?: SanityImageCrop
-    _type: 'image'
-    _key: string
-  }>
-  description?: Array<
+  name: string | null
+  slug: Slug | null
+  price: number | null
+  stock: number | null
+  description: Array<
     | {
         children?: Array<{
           marks?: Array<string>
@@ -603,23 +575,24 @@ export type GET_PRODUCT_QUERYResult = {
         _type: 'image'
         _key: string
       }
-  >
-  price?: number
-  categories?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
+  > | null
+  images: Array<{
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
     _key: string
-    [internalGroqTypeReferenceTo]?: 'category'
-  }>
-  collections?: Array<{
-    _ref: string
-    _type: 'reference'
-    _weak?: boolean
-    _key: string
-    [internalGroqTypeReferenceTo]?: 'collection'
-  }>
-  stock?: number
+  }> | null
+  categories: Array<{
+    _id: string
+    slug: Slug | null
+    title: string | null
+  }> | null
 } | null
 
 // Source: ./sanity/lib/products/getProducts.ts
@@ -680,6 +653,29 @@ export type GET_PRODUCTS_QUERYResult = Array<{
     slug: Slug | null
     title: string | null
   }> | null
+}>
+
+// Source: ./sanity/lib/products/getRelatedProduct.ts
+// Variable: GET_RELATED_PRODUCT_QUERY
+// Query: *[_type == "product" && stock > 0 && count(categories[_ref in *[_type == "category" && slug.current in $categorySlugs]._id]) > 0]{      _id,      name,      slug,      images[0],      price,      stock    } | order(name asc)
+export type GET_RELATED_PRODUCT_QUERYResult = Array<{
+  _id: string
+  name: string | null
+  slug: Slug | null
+  images: {
+    asset?: {
+      _ref: string
+      _type: 'reference'
+      _weak?: boolean
+      [internalGroqTypeReferenceTo]?: 'sanity.imageAsset'
+    }
+    hotspot?: SanityImageHotspot
+    crop?: SanityImageCrop
+    _type: 'image'
+    _key: string
+  } | null
+  price: number | null
+  stock: number | null
 }>
 
 // Source: ./sanity/lib/products/getTenProducts.ts
@@ -756,6 +752,20 @@ export type TEN_PRODUCTS_QUERYResult = Array<{
   stock?: number
 }>
 
+// Source: ./sanity/lib/sale/getActiveSaleByCouponCode.ts
+// Variable: ACTIVE_SALE_BY_COUPON_QUERY
+// Query: *[            _type == "sale"            && isActive == true            && couponCode == $couponCode        ] | order(validFrom desc) {            _id,            title,            description,            discountAmount,            couponCode,            validFrom,            validUtil,            isActive        }[0]
+export type ACTIVE_SALE_BY_COUPON_QUERYResult = {
+  _id: string
+  title: string | null
+  description: string | null
+  discountAmount: number | null
+  couponCode: string | null
+  validFrom: string | null
+  validUtil: string | null
+  isActive: boolean | null
+} | null
+
 // Query TypeMap
 import '@sanity/client'
 declare module '@sanity/client' {
@@ -764,9 +774,10 @@ declare module '@sanity/client' {
     '\n            *[_type == "category" && visible == true] | order(_createdAt asc)[0..10]\n        ': ALL_POPULAR_CATEGORIES_QUERYResult
     '\n            *[_type == "collection"] | order(_createdAt desc)\n        ': ALL_COLLECTIONS_QUERYResult
     '\n              *[_type == "collection"] | order(_editedAt asc)[0..3]\n          ': FOUR_COLLECTIONS_QUERYResult
-    '\n        *[\n            _type == "sale"\n            && isActive == true\n            && couponCode == $couponCode\n        ] | order(validFrom desc) {\n            _id,\n            title,\n            description,\n            discountAmount,\n            couponCode,\n            validFrom,\n            validUtil,\n            isActive\n        }[0]\n        ': ACTIVE_SALE_BY_COUPON_QUERYResult
-    '\n    *[_type == "product" && slug.current == $slug][0]\n': GET_PRODUCT_QUERYResult
+    '\n    *[_type == "product" && slug.current == $slug][0]{\n      _id,\n      name,\n      slug,\n      price,\n      stock,\n      description,\n      images,\n      categories[]->{\n        _id,\n        slug,\n        title\n      }\n    }\n': GET_PRODUCT_QUERYResult
     '\n    *[_type == "product"]{\n      _id,\n      name,\n      slug,\n      images,\n      price,\n      stock,\n      description,\n      categories[]->{\n        slug,\n        title,\n      }\n    } | order(name asc)\n  ': GET_PRODUCTS_QUERYResult
+    '\n    *[_type == "product" && stock > 0 && count(categories[_ref in *[_type == "category" && slug.current in $categorySlugs]._id]) > 0]{\n      _id,\n      name,\n      slug,\n      images[0],\n      price,\n      stock\n    } | order(name asc)\n  ': GET_RELATED_PRODUCT_QUERYResult
     '\n              *[_type == "product"] | order(_createdAt desc)[0..9]\n          ': TEN_PRODUCTS_QUERYResult
+    '\n        *[\n            _type == "sale"\n            && isActive == true\n            && couponCode == $couponCode\n        ] | order(validFrom desc) {\n            _id,\n            title,\n            description,\n            discountAmount,\n            couponCode,\n            validFrom,\n            validUtil,\n            isActive\n        }[0]\n        ': ACTIVE_SALE_BY_COUPON_QUERYResult
   }
 }
