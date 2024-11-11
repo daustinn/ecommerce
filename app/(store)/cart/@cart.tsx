@@ -16,7 +16,9 @@ export default function CartList() {
   const items = useCartStore((state) => state.items)
 
   const addItem = useCartStore((state) => state.addItem)
+
   const removeItem = useCartStore((state) => state.removeItem)
+
   const getTotalPrice = useCartStore((state) => state.getTotalPrice)
 
   const [isLoading, setIsLoading] = React.useState(false)
@@ -24,8 +26,10 @@ export default function CartList() {
   const { isSignedIn, user } = useUser()
 
   const handleCheckout = async () => {
-    if (!isSignedIn) return null
+    if (!isSignedIn) return
+
     setIsLoading(true)
+
     try {
       const metadata: Metadata = {
         orderNumber: crypto.randomUUID(),
@@ -33,8 +37,14 @@ export default function CartList() {
         customerEmail: user.primaryEmailAddress?.emailAddress ?? 'Unknown',
         clerkUserId: user.id
       }
+
+      // Create a checkout session
       const checkoutURL = await createCheckoutSession(items, metadata)
-      window.location.href = checkoutURL
+
+      // Redirect to the checkout page
+      if (checkoutURL) {
+        window.location.href = checkoutURL
+      }
     } catch (error) {
       console.error(error)
     } finally {
@@ -84,9 +94,9 @@ export default function CartList() {
                   )}
                   <div className="flex pt-2 items-center gap-3">
                     <p className="text-sm flex-grow">
-                      {totalPrice?.toLocaleString('en-EU', {
+                      {totalPrice?.toLocaleString('es-PE', {
                         style: 'currency',
-                        currency: 'USD',
+                        currency: 'PEN',
                         currencyDisplay: 'symbol'
                       })}
                     </p>
@@ -127,9 +137,9 @@ export default function CartList() {
           <div className="flex py-1 text-sm border-t border-stone-700 pt-3 mt-3">
             <span className="flex flex-grow text-white text-lg">Total:</span>
             <p>
-              {getTotalPrice().toLocaleString('en-EU', {
+              {getTotalPrice().toLocaleString('es-PE', {
                 style: 'currency',
-                currency: 'USD',
+                currency: 'PEN',
                 currencyDisplay: 'symbol'
               })}
             </p>
@@ -138,10 +148,16 @@ export default function CartList() {
             <button
               onClick={handleCheckout}
               disabled={isLoading}
-              className="w-full flex justify-between gap-2 items-center p-3 px-4 hover:bg-white/90 hover:scale-105 transition-all rounded-full bg-white text-black mt-5"
+              className="w-full disabled:opacity-50 disabled:grayscale flex justify-between gap-2 items-center p-3 px-4 hover:bg-white/90 hover:scale-105 transition-all rounded-full bg-white text-black mt-5"
             >
-              Ordenar
-              <BsArrowRight size={20} />
+              {isLoading ? (
+                <>Procesando</>
+              ) : (
+                <>
+                  Ordenar
+                  <BsArrowRight size={20} />
+                </>
+              )}
             </button>
           ) : (
             <SignInButton mode="modal">
