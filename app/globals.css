@@ -106,14 +106,14 @@ input[type='search'] {
 
 @font-face {
   font-family: 'Larken';
-  src: url('/fonts/larken/Larken-medium.otf') format('opentype');
+  src: url('/fonts/larken/Larken-Medium.otf') format('opentype');
   font-weight: medium;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Hellix';
-  src: url('/fonts/hellix/Hellix-medium.otf') format('opentype');
+  src: url('/fonts/hellix/Hellix-Medium.otf') format('opentype');
   font-weight: medium;
   font-style: normal;
 }
