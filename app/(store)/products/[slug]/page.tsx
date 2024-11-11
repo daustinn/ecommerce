@@ -1,7 +1,8 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import ProductSlug from '@/components/products/product'
+import RelatedProducts from '@/components/products/related'
+import { GET_PRODUCT_QUERYResult } from '@/sanity.types'
 import { getProduct } from '@/sanity/lib/products/getProduct'
-import React from 'react'
+import React, { Suspense } from 'react'
 
 export default async function ProductSlugPage({
   params
@@ -11,10 +12,13 @@ export default async function ProductSlugPage({
   }
 }) {
   const { slug } = await params
-  const product = await getProduct(slug)
+  const product = (await getProduct(slug)) as GET_PRODUCT_QUERYResult
   return (
     <div className="max-w-7xl mx-auto w-full">
-      <ProductSlug product={product as any} />
+      <ProductSlug product={product} />
+      <Suspense>
+        <RelatedProducts product={product} />
+      </Suspense>
     </div>
   )
 }
