@@ -49,6 +49,12 @@ export const orderType = defineType({
       validation: (Rule) => Rule.required()
     }),
     defineField({
+      name: 'amountDue',
+      title: 'Amount Due',
+      type: 'number',
+      validation: (Rule) => Rule.required().min(0)
+    }),
+    defineField({
       name: 'products',
       title: 'Products',
       type: 'array',
@@ -73,7 +79,7 @@ export const orderType = defineType({
             select: {
               product: 'product.name',
               quantity: 'quantity',
-              image: 'product.image',
+              image: 'product.images.0',
               price: 'product.price',
               currency: 'product.currency'
             },
