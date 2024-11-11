@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { AnimatedText } from '../framer/animated-text'
+
 import MovingSticker from '../framer/moving-sticker'
 
 export default function Hero() {

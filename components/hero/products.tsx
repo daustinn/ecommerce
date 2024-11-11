@@ -56,15 +56,17 @@ export const ProductCard = ({ product }: { product: Product }) => {
       className="group flex flex-col gap-2"
     >
       <div className="relative w-[200px] aspect-square rounded-[30px] overflow-hidden">
-        <img
-          src={
-            hover
-              ? urlFor(imageTwo!).width(400).url()
-              : urlFor(thumbnail!).width(400).url()
-          }
-          alt=""
-          className="w-full h-full object-cover"
-        />
+        <picture>
+          <img
+            src={
+              hover
+                ? urlFor(imageTwo!).width(400).url()
+                : urlFor(thumbnail!).width(400).url()
+            }
+            alt={product.name}
+            className="w-full h-full object-cover"
+          />
+        </picture>
       </div>
       <h1 className="line-clamp-1 text-stone-300 text-lg text-ellipsis">
         {product.name}
