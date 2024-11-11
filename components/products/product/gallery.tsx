@@ -31,7 +31,7 @@ export default function GalleryProduct({
   return (
     <div className="flex gap-14">
       <div className="flex flex-col gap-4">
-        {images.map((image, index) => (
+        {images.slice(0, 6).map((image, index) => (
           <button
             onMouseEnter={() => setCurrent(index)}
             data-current={current === index ? '' : undefined}
@@ -48,9 +48,13 @@ export default function GalleryProduct({
           </button>
         ))}
       </div>
-      <div>
-        <picture className="w-[600px] max-w-[700px]">
-          <img src={images[current]} className="h-auto" alt={altSeo} />
+      <div className="w-[550px] h-[550px] flex justify-center max-w-full">
+        <picture>
+          <img
+            src={images[current]}
+            className="h-full w-auto max-w-full max-h-full object-contain"
+            alt={altSeo}
+          />
         </picture>
       </div>
     </div>
