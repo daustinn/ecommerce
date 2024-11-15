@@ -8,8 +8,10 @@ import Stripe from 'stripe'
 export async function POST(req: NextRequest) {
   // Get the body
   const body = await req.text()
+
   // Get the headers
   const headersList = await headers()
+
   // Get the signature from the headers
   const sig = headersList.get('stripe-signature')
 
